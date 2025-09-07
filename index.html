@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organik Ürünler - E-Ticaret</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+/* Genel Stiller */
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #45a049;
+    --text-color: #333;
+    --light-gray: #f5f5f5;
+    --border-color: #ddd;
+    --shadow: 0 2px 5px rgba(0,0,0,0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+/* Header ve Navigasyon */
+header {
+    background: white;
+    box-shadow: var(--shadow);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo h1 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+/* Mobil Hamburger Menü */
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+/* Dropdown Menü */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    min-width: 200px;
+    display: none;
+    list-style: none;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu li a {
+    display: block;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-menu li:last-child a {
+    border-bottom: none;
+}
+
+/* Sepet İkonu */
+.cart-icon {
+    position: relative;
+}
+
+.cart-count {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--primary-color);
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 50%;
+}
+
+/* Hero Bölümü */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 1rem;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Kampanyalar Bölümü */
+.campaigns {
+    padding: 4rem 1rem;
+    background: var(--light-gray);
+    text-align: center;
+}
+
+.campaigns h2 {
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.campaign-slider {
+    max-width: 1200px;
+    margin: 2rem auto;
+    overflow: hidden;
+}
+
+.campaign-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: block;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.campaign-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+}
+
+.campaign-content {
+    padding: 2rem;
+}
+
+.campaign-content h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    font-size: 1.5rem;
+}
+
+.campaign-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+}
+
+.campaign-meta .discount {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.campaign-meta .valid-until {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Ürünler Bölümü */
+.products {
+    padding: 4rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.products h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.product-filters {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#sort-select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.view-options {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.view-btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.view-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.category-filters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+/* Ürün Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.product-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.product-info {
+    padding: 1.5rem;
+}
+
+.product-info h3 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.product-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-small {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: var(--transition);
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-cart {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-cart:hover {
+    background: var(--secondary-color);
+}
+
+.btn-favorite {
+    background: #f8f9fa;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.btn-favorite:hover {
+    background: #dc3545;
+    color: white;
+}
+
+/* Özellikler Bölümü */
+.features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 4rem 1rem;
+    background: var(--light-gray);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+/* Hakkımızda Bölümü */
+.about {
+    padding: 4rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+}
+
+.about-text ul {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.about-text li {
+    margin-bottom: 0.5rem;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 1rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+.about-image {
+    text-align: center;
+}
+
+.about-image img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* Müşteri Yorumları */
+.testimonials {
+    padding: 4rem 1rem;
+    background: var(--light-gray);
+}
+
+.testimonials h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.testimonial-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    box-shadow: var(--shadow);
+}
+
+.testimonial-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.testimonial-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.testimonial-info h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.rating {
+    color: #ffd700;
+}
+
+.testimonial-text {
+    font-style: italic;
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.testimonial-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* İletişim Bölümü */
+.contact {
+    padding: 4rem 1rem;
+    background: white;
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: var(--text-color);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.contact-info {
+    padding: 2rem;
+    background: var(--light-gray);
+    border-radius: 8px;
+}
+
+.contact-info h3 {
+    margin-bottom: 2rem;
+    color: var(--text-color);
+}
+
+.contact-info p {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    width: 20px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-links a {
+    color: var(--text-color);
+    font-size: 1.5rem;
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.contact-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+/* Bülten Aboneliği */
+.newsletter {
+    padding: 4rem 1rem;
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+}
+
+.newsletter-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.newsletter h3 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.newsletter-form input {
+    flex: 1;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 4px;
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: white;
+    padding: 4rem 1rem 2rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-section h3 {
+    margin-bottom: 1rem;
+    color: white;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.payment-methods {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.payment-methods img {
+    height: 30px;
+    background: white;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #444;
+}
+
+/* Yardımcı Butonlar */
+.floating-buttons {
+    position: fixed;
+    right: 2rem;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 1000;
+}
+
+.float-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: var(--primary-color);
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.float-btn:hover {
+    transform: scale(1.1);
+}
+
+.float-btn.whatsapp {
+    background: #25D366;
+}
+
+/* Butonlar */
+.btn-primary {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: var(--secondary-color);
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    border: 2px solid white;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: var(--primary-color);
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+    /* Mobil Navigasyon */
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        padding: 1rem 0;
+        gap: 0;
+    }
+    
+    .nav-links.active {
+        display: flex;
+    }
+    
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid var(--border-color);
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 1rem;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        background: var(--light-gray);
+        display: block;
+    }
+    
+    /* Hero Mobil */
+    .hero h2 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Section Headers */
+    .section-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    /* Kampanyalar Mobil */
+    .campaign-card img {
+        height: 200px;
+    }
+    
+    /* Ürünler Mobil */
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .category-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .product-filters {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    /* Hakkımızda Mobil */
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    /* İletişim Mobil */
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Bülten Mobil */
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    /* Footer Mobil */
+    .footer-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .payment-methods {
+        justify-content: center;
+    }
+    
+    /* Floating Buttons Mobil */
+    .floating-buttons {
+        right: 1rem;
+        bottom: 1rem;
+    }
+    
+    /* Genel Padding Ayarları */
+    .hero,
+    .campaigns,
+    .products,
+    .features,
+    .about,
+    .testimonials,
+    .contact,
+    .newsletter {
+        padding: 3rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Çok küçük ekranlar için */
+    .hero h2 {
+        font-size: 1.5rem;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .features {
+        grid-template-columns: 1fr;
+    }
+    
+    nav {
+        padding: 1rem 3%;
+    }
+    
+    .campaign-content,
+    .contact-info,
+    .contact-form {
+        padding: 1.5rem;
+    }
+}
+
+/* Gizli İçerik (Dinamik Yükleme İçin) */
+.hidden {
+    display: none;
+}
+
+/* Yükleme Animasyonu */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Slider Kontrolleri */
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.slider-controls button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.slider-controls button:hover {
+    background: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+/* Sayfalama */
+.pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+}
+
+.pagination button {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    background: white;
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.pagination button.active,
+.pagination button:hover {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Organik Ürünler</h1>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#anasayfa">Ana Sayfa</a></li>
+                <li><a href="#urunler">Ürünler</a></li>
+                <li><a href="#kampanyalar">Kampanyalar</a></li>
+                <li><a href="#hakkimizda">Hakkımızda</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">Hesabım <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="login.html">Giriş Yap</a></li>
+                        <li><a href="register.html">Kayıt Ol</a></li>
+                        <li><a href="dashboard.html">Hesabım</a></li>
+                        <li><a href="orders.html">Siparişlerim</a></li>
+                        <li><a href="favorites.html">Favorilerim</a></li>
+                        <li><a href="addresses.html">Adreslerim</a></li>
+                        <li><a href="notifications.html">Bildirimlerim</a></li>
+                    </ul>
+                </li>
+                <li class="cart-icon">
+                    <a href="cart.html">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="anasayfa" class="hero">
+            <div class="hero-content">
+                <h2>Doğal ve Organik Ürünler</h2>
+                <p>En taze ve doğal ürünler, çiftlikten sofralarınıza</p>
+                <div class="hero-buttons">
+                    <a href="#urunler" class="btn-primary">Ürünleri Keşfet</a>
+                    <a href="#kampanyalar" class="btn-secondary">Kampanyaları Gör</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="kampanyalar" class="campaigns">
+            <h2>Kampanyalar</h2>
+            <div class="campaign-slider">
+                <div class="campaign-card">
+                    <div class="campaign-card img">
+                        <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
+                            <i class="fas fa-percent"></i>
+                        </div>
+                    </div>
+                    <div class="campaign-content">
+                        <h3>Yaz Kampanyası</h3>
+                        <p>Tüm organik ürünlerde %25 indirim! Bu fırsatı kaçırmayın.</p>
+                        <div class="campaign-meta">
+                            <span class="discount">%25 İndirim</span>
+                            <span class="valid-until">31 Ağustos'a kadar geçerli</span>
+                        </div>
+                        <a href="#urunler" class="btn-primary">Kampanya Ürünleri</a>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="urunler" class="products">
+            <h2>Ürünlerimiz</h2>
+            <div class="section-header">
+                <div class="product-filters">
+                    <select id="sort-select">
+                        <option value="newest">En Yeniler</option>
+                        <option value="price_asc">Fiyat (Düşükten Yükseğe)</option>
+                        <option value="price_desc">Fiyat (Yüksekten Düşüğe)</option>
+                        <option value="popular">En Popüler</option>
+                        <option value="rating">En Çok Değerlendirilen</option>
+                    </select>
+                    <div class="view-options">
+                        <button class="view-btn active" data-view="grid"><i class="fas fa-th"></i></button>
+                        <button class="view-btn" data-view="list"><i class="fas fa-list"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="category-filters">
+                <button class="filter-btn active" data-category="all">Tümü</button>
+                <button class="filter-btn" data-category="zeytinyagi">Zeytinyağları</button>
+                <button class="filter-btn" data-category="bal">Bal Çeşitleri</button>
+                <button class="filter-btn" data-category="sut">Süt Ürünleri</button>
+                <button class="filter-btn" data-category="yumurta">Yumurta</button>
+                <button class="filter-btn" data-category="peynir">Peynir</button>
+                <button class="filter-btn" data-category="tereyagi">Tereyağı</button>
+            </div>
+            <div class="products-grid" id="products-grid">
+                <!-- Örnek Ürünler -->
+                <div class="product-card" data-category="zeytinyagi">
+                    <div class="product-image">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Organik Zeytinyağı</h3>
+                        <div class="product-price">₺89.90</div>
+                        <div class="product-actions">
+                            <button class="btn-small btn-cart">Sepete Ekle</button>
+                            <button class="btn-small btn-favorite"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="bal">
+                    <div class="product-image">
+                        <i class="fas fa-jar"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Çiçek Balı</h3>
+                        <div class="product-price">₺65.00</div>
+                        <div class="product-actions">
+                            <button class="btn-small btn-cart">Sepete Ekle</button>
+                            <button class="btn-small btn-favorite"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="sut">
+                    <div class="product-image">
+                        <i class="fas fa-glass-water"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Organik Süt</h3>
+                        <div class="product-price">₺12.50</div>
+                        <div class="product-actions">
+                            <button class="btn-small btn-cart">Sepete Ekle</button>
+                            <button class="btn-small btn-favorite"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="yumurta">
+                    <div class="product-image">
+                        <i class="fas fa-egg"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Organik Yumurta</h3>
+                        <div class="product-price">₺25.00</div>
+                        <div class="product-actions">
+                            <button class="btn-small btn-cart">Sepete Ekle</button>
+                            <button class="btn-small btn-favorite"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="peynir">
+                    <div class="product-image">
+                        <i class="fas fa-cheese"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Köy Peyniri</h3>
+                        <div class="product-price">₺45.00</div>
+                        <div class="product-actions">
+                            <button class="btn-small btn-cart">Sepete Ekle</button>
+                            <button class="btn-small btn-favorite"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="tereyagi">
+                    <div class="product-image">
+                        <i class="fas fa-butter"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Organik Tereyağı</h3>
+                        <div class="product-price">₺35.00</div>
+                        <div class="product-actions">
+                            <button class="btn-small btn-cart">Sepete Ekle</button>
+                            <button class="btn-small btn-favorite"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination">
+                <button disabled>Önceki</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>Sonraki</button>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <i class="fas fa-truck"></i>
+                <h3>Ücretsiz Kargo</h3>
+                <p>150 TL üzeri alışverişlerde</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-undo"></i>
+                <h3>Kolay İade</h3>
+                <p>14 gün içinde ücretsiz iade</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Güvenli Alışveriş</h3>
+                <p>SSL sertifikalı ödeme</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-headset"></i>
+                <h3>7/24 Destek</h3>
+                <p>Her zaman yanınızdayız</p>
+            </div>
+        </section>
+
+        <section id="hakkimizda" class="about">
+            <h2>Hakkımızda</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Biz, doğal ve organik ürünleri en taze haliyle sizlere ulaştırmayı hedefleyen bir çiftlik ailesiyiz. Tüm ürünlerimiz kendi çiftliğimizde, doğal yöntemlerle üretilmektedir.</p>
+                    <p>Ürünlerimizin kalitesi ve tazeliği için:</p>
+                    <ul>
+                        <li>Organik sertifikalı üretim</li>
+                        <li>Günlük taze ürün teslimatı</li>
+                        <li>Soğuk zincir taşıma</li>
+                        <li>Kalite kontrol testleri</li>
+                    </ul>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Mutlu Müşteri</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Ürün Çeşidi</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">24/7</span>
+                            <span class="stat-label">Destek</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div style="width: 100%; height: 300px; background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem;">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2>Müşteri Yorumları</h2>
+            <div class="testimonial-card">
+                <div class="testimonial-header">
+                    <div class="testimonial-avatar">
+                        M
+                    </div>
+                    <div class="testimonial-info">
+                        <h4>Mehmet Yılmaz</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-text">
+                    "Ürünlerin kalitesi gerçekten mükemmel. Özellikle zeytinyağı ve bal çok lezzetli. Kesinlikle tavsiye ederim!"
+                </div>
+                <div class="testimonial-date">
+                    15 Ağustos 2024
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </section>
+
+        <section id="iletisim" class="contact">
+            <h2>İletişim</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Bize Ulaşın</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Çiftlik Mahallesi, Organik Sokak No:1, Trabzon</p>
+                    <p><i class="fas fa-phone"></i> +90 555 555 55 55</p>
+                    <p><i class="fas fa-envelope"></i> info@organikurunler.com</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Ad Soyad</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Konu</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Seçiniz</option>
+                            <option value="siparis">Sipariş</option>
+                            <option value="urun">Ürün</option>
+                            <option value="teslimat">Teslimat</option>
+                            <option value="diger">Diğer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mesajınız</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Gönder</button>
+                </form>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="newsletter-content">
+                <h3>Bültenimize Katılın</h3>
+                <p>En güncel kampanya ve indirimlerden haberdar olun</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="E-posta adresiniz" required>
+                    <button type="submit" class="btn-primary">Abone Ol</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <p>Email: info@organikurunler.com</p>
+                <p>Tel: +90 555 555 55 55</p>
+                <p>Adres: Çiftlik Mahallesi, Organik Sokak No:1, Trabzon</p>
+            </div>
+            <div class="footer-section">
+                <h3>Hızlı Bağlantılar</h3>
+                <ul>
+                    <li><a href="#anasayfa">Ana Sayfa</a></li>
+                    <li><a href="#urunler">Ürünler</a></li>
+                    <li><a href="#kampanyalar">Kampanyalar</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Müşteri Hizmetleri</h3>
+                <ul>
+                    <li><a href="faq.html">Sık Sorulan Sorular</a></li>
+                    <li><a href="shipping.html">Kargo ve Teslimat</a></li>
+                    <li><a href="returns.html">İade ve Değişim</a></li>
+                    <li><a href="privacy.html">Gizlilik Politikası</a></li>
+                    <li><a href="terms.html">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Sosyal Medya</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="payment-methods">
+                    <div style="height: 30px; background: white; padding: 5px; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-right: 10px; color: #333; font-weight: bold; min-width: 60px;">VISA</div>
+                    <div style="height: 30px; background: white; padding: 5px; border-radius: 4px; display: flex; align-items: center; justify-content: center; margin-right: 10px; color: #333; font-weight: bold; min-width: 60px;">MC</div>
+                    <div style="height: 30px; background: white; padding: 5px; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: #333; font-weight: bold; min-width: 60px;">AMEX</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Organik Ürünler. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <div class="floating-buttons">
+        <button class="float-btn whatsapp">
+            <i class="fab fa-whatsapp"></i>
+        </button>
+        <button class="float-btn scroll-top" onclick="scrollToTop()">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </div>
+
+    <script>
+        // Mobil menü toggle
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('nav-links');
+            const menuToggle = document.querySelector('.mobile-menu-toggle i');
+            
+            navLinks.classList.toggle('active');
+            
+            if (navLinks.classList.contains('active')) {
+                menuToggle.classList.remove('fa-bars');
+                menuToggle.classList.add('fa-times');
+            } else {
+                menuToggle.classList.remove('fa-times');
+                menuToggle.classList.add('fa-bars');
+            }
+        }
+
+        // Üst kısma kaydırma
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Kategori filtreleri
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Aktif butonu değiştir
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const category = this.dataset.category;
+                const products = document.querySelectorAll('.product-card');
+                
+                products.forEach(product => {
+                    if (category === 'all' || product.dataset.category === category) {
+                        product.style.display = 'block';
+                    } else {
+                        product.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Grid/Liste görünüm değiştirici
+        document.querySelectorAll('.view-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const view = this.dataset.view;
+                const grid = document.getElementById('products-grid');
+                
+                if (view === 'list') {
+                    grid.classList.add('list-view');
+                } else {
+                    grid.classList.remove('list-view');
+                }
+            });
+        });
+
+        // Sepete ekleme işlevi
+        document.querySelectorAll('.btn-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const cartCount = document.querySelector('.cart-count');
+                let count = parseInt(cartCount.textContent);
+                cartCount.textContent = count + 1;
+                
+                // Toast bildirimi göster
+                showToast('Ürün sepete eklendi!', 'success');
+            });
+        });
+
+        // Favori ekleme/çıkarma
+        document.querySelectorAll('.btn-favorite').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+                if (icon.classList.contains('fas')) {
+                    icon.classList.remove('fas');
+                    icon.classList.add('far');
+                    showToast('Ürün favorilerden çıkarıldı!', 'error');
+                } else {
+                    icon.classList.remove('far');
+                    icon.classList.add('fas');
+                    showToast('Ürün favorilere eklendi!', 'success');
+                }
+            });
+        });
+
+        // Toast bildirimi gösterme
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // Form gönderme
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('Mesajınız gönderildi! En kısa sürede size dönüş yapacağız.', 'success');
+            this.reset();
+        });
+
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            showToast('Bültene başarıyla abone oldunuz!', 'success');
+            this.reset();
+        });
+
+        // Sayfa kaydırma efekti
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const scrollTop = document.querySelector('.scroll-top');
+            
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+                scrollTop.style.display = 'block';
+            } else {
+                header.style.background = 'white';
+                header.style.backdropFilter = 'none';
+                scrollTop.style.display = 'none';
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Mobil menüyü kapat
+                    const navLinks = document.getElementById('nav-links');
+                    if (navLinks.classList.contains('active')) {
+                        toggleMobileMenu();
+                    }
+                }
+            });
+        });
+    </script>

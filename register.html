@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kayıt Ol - E-Ticaret</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>E-Ticaret</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="index.html#urunler">Ürünler</a></li>
+                <li><a href="index.html#hakkimizda">Hakkımızda</a></li>
+                <li><a href="index.html#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="login-container">
+        <div class="login-box">
+            <h2>Kayıt Ol</h2>
+            <form action="php/register.php" method="POST">
+                <div class="form-group">
+                    <label for="name">Ad Soyad:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-posta:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telefon:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Şifre:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="password_confirm">Şifre Tekrar:</label>
+                    <input type="password" id="password_confirm" name="password_confirm" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Adres:</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                </div>
+                <button type="submit">Kayıt Ol</button>
+            </form>
+            <p class="register-link">Zaten hesabınız var mı? <a href="login.html">Giriş Yap</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>İletişim</h3>
+                <p>Email: info@eticaret.com</p>
+                <p>Tel: +90 555 555 55 55</p>
+            </div>
+            <div class="footer-section">
+                <h3>Sosyal Medya</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 E-Ticaret. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+</body>
+</html> 

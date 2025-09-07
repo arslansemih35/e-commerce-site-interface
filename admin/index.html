@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Paneli - E-Ticaret</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>Admin Paneli</h2>
+            </div>
+            <ul class="admin-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Ana Sayfa</a></li>
+                <li><a href="products.html"><i class="fas fa-box"></i> Ürünler</a></li>
+                <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Siparişler</a></li>
+                <li><a href="customers.html"><i class="fas fa-users"></i> Müşteriler</a></li>
+                <li><a href="categories.html"><i class="fas fa-tags"></i> Kategoriler</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Ayarlar</a></li>
+                <li><a href="../index.html"><i class="fas fa-sign-out-alt"></i> Çıkış Yap</a></li>
+            </ul>
+        </nav>
+
+        <main class="admin-content">
+            <header class="admin-header">
+                <div class="admin-search">
+                    <input type="text" placeholder="Ara...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="admin-user">
+                    <span>Admin</span>
+                    <img src="../images/admin-avatar.png" alt="Admin">
+                </div>
+            </header>
+
+            <div class="admin-dashboard">
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        <div class="stat-info">
+                            <h3>Toplam Sipariş</h3>
+                            <p>150</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <div class="stat-info">
+                            <h3>Toplam Müşteri</h3>
+                            <p>1,250</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-box"></i>
+                        <div class="stat-info">
+                            <h3>Toplam Ürün</h3>
+                            <p>500</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <div class="stat-info">
+                            <h3>Toplam Gelir</h3>
+                            <p>₺25,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-charts">
+                    <div class="chart-container">
+                        <h3>Satış Grafiği</h3>
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Popüler Ürünler</h3>
+                        <canvas id="productsChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="recent-orders">
+                    <h3>Son Siparişler</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sipariş No</th>
+                                <th>Müşteri</th>
+                                <th>Ürün</th>
+                                <th>Tutar</th>
+                                <th>Durum</th>
+                                <th>İşlem</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#12345</td>
+                                <td>Ahmet Yılmaz</td>
+                                <td>Laptop</td>
+                                <td>₺15,000</td>
+                                <td><span class="status pending">Beklemede</span></td>
+                                <td>
+                                    <button class="btn-view">Görüntüle</button>
+                                    <button class="btn-edit">Düzenle</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html> 
